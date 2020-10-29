@@ -24,7 +24,9 @@ async function createRouter(db) {
 
     /* Ceci est le block de code a dupliquer pour continuer l'app */
     router.get('/', (req, res) => {
-        return res.json({ hello: 'White' })
+        res.render('home.twig', {
+        });
+        //return res.json({ hello: 'White' })
     })
 
     router.post('/signup', async function(req, res) {
