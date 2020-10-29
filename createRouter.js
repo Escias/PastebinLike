@@ -1,3 +1,4 @@
+
 const Router = require('express').Router
 const createUserController = require('./controllers/users.controller')
 
@@ -23,8 +24,7 @@ async function createRouter(db) {
 
     /* Ceci est le block de code a dupliquer pour continuer l'app */
     router.get('/', (req, res) => {
-
-        return res.json({ hello: 'world' })
+        return res.json({ hello: 'White' })
     })
 
     router.post('/signup', async function(req, res) {
@@ -49,13 +49,28 @@ async function createRouter(db) {
         })
     })
 
-    router.get('/:slug', isAuth, async function (req, res) {
+    router.get('/pastebin', isAuth, async function (req, res) {
+        var pastebin = {}
         console.log(req.params.slug)
+        let test = Twig.renderFile('views/index.twig', {pastebin:pastebin}, (err, html) => {
+            html; // compiled string
+        });
 
-        return res.json({ slug: req.params.slug })
-    })
+        return res.json({ slug: test })
+    });
 
-    
+    router.get('/past/:slug', (req, res) => {
+        const pastebin = req.params.slug;
+        res.render('index.twig', {
+            pastebin:pastebin
+        });
+    });
+
+    router.get('/create', (req, res) => {
+        res.render('create.twig', {
+        });
+    });
+
     return router
 }
 
