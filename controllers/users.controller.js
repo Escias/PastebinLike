@@ -22,6 +22,7 @@ module.exports = function createUserController(db) {
 
         async login({ email, password }) {
             const user = await users.findOne({ email: email })
+            console.log(user);
             if (!(user && user.password === password)) {
                 return { error: 'Bad credentials' }
             }

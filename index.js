@@ -22,11 +22,11 @@ class MainApp {
             }
         )
 
-        
+
     }
 
     async initApp(client) {
-        
+
         this.db = client.db('pastebin_like')
         this.collections.users = this.db.collection('users')
         this.collections.pastes = this.db.collection('pastes')
@@ -36,10 +36,10 @@ class MainApp {
         this.events.emit('ready')
     }
 
-    
 
 
-    
+
+
 }
 
 /* End Of MainApp class */
@@ -49,3 +49,4 @@ const app = new MainApp()
 app.events.once('ready', async () => {
     console.log('App Ready!')
 })
+

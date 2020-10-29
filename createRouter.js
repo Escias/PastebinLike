@@ -32,9 +32,17 @@ async function createRouter(db) {
         return res.json(signupResult)
     })
 
-    router.post('/login', async function(req, res) {
+    router.post('/login', async function(req, res){
         const loginResult = await UserController.login(req.body)
         return res.json(loginResult)
+    });
+    router.get('/login',(req,res)=>{
+        res.render('login.twig', {
+        });
+    })
+    router.get('/signup',(req,res)=>{
+        res.render('register.twig', {
+        });
     })
 
     router.get('/my-pastes', isAuth, async function (req, res) {
