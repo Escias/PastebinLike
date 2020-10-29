@@ -1,11 +1,13 @@
 
 const Router = require('express').Router
 const createUserController = require('./controllers/users.controller')
+const createPastebinController = require('./controllers/pastes.controller')
 
 
 async function createRouter(db) {
     const router = Router()
     const UserController = createUserController(db)
+    const PastebinController = createPastebinController(db)
 
     async function isAuth(req, res, next) {
         console.log('isAuth is called now')
@@ -36,6 +38,7 @@ async function createRouter(db) {
         const loginResult = await UserController.login(req.body)
         return res.json(loginResult)
     });
+
     router.get('/login',(req,res)=>{
         res.render('login.twig', {
         });
@@ -43,6 +46,10 @@ async function createRouter(db) {
     router.get('/signup',(req,res)=>{
         res.render('register.twig', {
         });
+    })
+    router.post('/create',async function(req,res){
+        const pastebin = await PastebinController.createcontent(req.body)
+        return res.json(pastebin)
     })
 
     router.get('/my-pastes', isAuth, async function (req, res) {
@@ -57,20 +64,11 @@ async function createRouter(db) {
         })
     })
 
-    router.get('/pastebin', isAuth, async function (req, res) {
-        var pastebin = {}
-        console.log(req.params.slug)
-        let test = Twig.renderFile('views/index.twig', {pastebin:pastebin}, (err, html) => {
-            html; // compiled string
-        });
-
-        return res.json({ slug: test })
-    });
-
-    router.get('/past/:slug', (req, res) => {
-        const pastebin = req.params.slug;
-        res.render('index.twig', {
-            pastebin:pastebin
+    router.get('/past/:slug', async function (req, res){
+        const pastebin = await PastebinController.getpaste(req.params.slug);
+        console.log(pastebin.cont);
+        res.render('pastebin.twig', {
+            pastebin: pastebin.paste
         });
     });
 

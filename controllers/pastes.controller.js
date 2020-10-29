@@ -1,18 +1,20 @@
+const slug = require('slug')
 module.exports = function createUserController(db) {
 
     const pastes = db.collection('pastes')
 
     return {
-        async createcontent({ title, content, userid}) {
+        async createcontent({ title, content, username}) {
+            var url = slug(title);
             await pastes.insertOne({
-                title: title, content: content, userid: userid
+                title: title, content: content, username: username, url:url
             })
             return { success: true }
         },
 
         // retourne un array contenant les information du paste
-        async getpaste({title}){
-            const paste = await pastes.findOne({title: title})
+        async getpaste({url}){
+            const paste = await pastes.findOne({url: url})
             return {success:true, paste}
         },
 
@@ -28,9 +30,9 @@ module.exports = function createUserController(db) {
             return {success:true, cont}
         },
 
-        //retourne l'id de l'utilisateur à l'origine du paste
-        async getuser({title}){
-            const user = await pastes.findOne({title: title}, {userid:true})
+        //retourne l'username de l'utilisateur à l'origine du paste
+        async getuserfrompaste({title}){
+            const user = await pastes.findOne({title: title}, {username:true})
             return {success:true, user}
         }
     }
