@@ -8,16 +8,37 @@
     <title>Document</title>
 </head>
 <body>
-    <header>
-        <h1>Pastebin Like</h1>
+    <header class="head">
+        <h1 style="color: white">Pastebin Like</h1>
+        <div class="log">
+            <a href="./signup"><button>Sign-up</button></a>
+            <a href="./login"><button>Login</button></a>
+        </div>
     </header>
-    <div>
-        <a href="./signup"><button>Sign-up</button></a>
-        <a href="./login"><button>Login</button></a>
+    <div class="pri">
         <a href="./create"><button>Create a paste</button></a>
     </div>
     <footer>
         <p>Anis / Jimmy / Alexandre / "Arthur"</p>
     </footer>
 </body>
+<style>
+    .head{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: black;
+        border-bottom: solid;
+        padding-left: 1%;
+        padding-right: 1%;
+    }
+    .log{
+        display: flex;
+        align-items: center;
+    }
+    .pri{
+        margin-top: 2%;
+        margin-bottom: 2%;
+    }
+</style>
 </html>
