@@ -8,12 +8,26 @@
     <title>Document</title>
 </head>
 <body>
-
+{% include 'header.twig' %}
 <form action="/signup" method="post">
     <input type="text"  placeholder="username" required="" name="pseudo"/>
     <input type="email"  placeholder="email" required="" name="email"/>
     <input type="password"  placeholder="password" required="" name="password"/>
     <button type="submit" onclick="">register</button>
 </form>
+{% include 'footer.twig' %}
 </body>
+<style>
+    body{
+        border: solid;
+    }
+    button{
+        outline: none;
+        box-shadow: 0 5px lightgrey;
+    }
+    button:active{
+        transform: translateY(3px);
+        box-shadow: 0 2px lightgrey;
+    }
+</style>
 </html>

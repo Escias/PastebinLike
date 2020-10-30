@@ -8,9 +8,24 @@
     <title>Document</title>
 </head>
 <body>
+{% include 'header.twig' %}
 {% for pastebin in pastebins%}
 <a href="/past/{{pastebin.url}}">{{pastebin.title}}  </a>
 <br/>
 {% endfor %}
+{% include 'footer.twig' %}
 </body>
+<style>
+    body{
+        border: solid;
+    }
+    button{
+        outline: none;
+        box-shadow: 0 5px lightgrey;
+    }
+    button:active{
+        transform: translateY(3px);
+        box-shadow: 0 2px lightgrey;
+    }
+</style>
 </html>

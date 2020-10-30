@@ -9,14 +9,30 @@
 </head>
 <body>
 {% include 'header.twig' %}
-    <header>
-        <h1>Pastebin Like</h1>
-    </header>
-    <div>
-        <a href="./create"><button>Create a paste</button></a>
+    <div class="pri">
+        <a href="./create"><button class="but">Create a paste</button></a>
     </div>
-    <footer>
-        <p>Anis / Jimmy / Alexandre / "Arthur"</p>
-    </footer>
+{% include 'footer.twig' %}
 </body>
+<style>
+    body {
+        border: solid;
+    }
+    button{
+        outline: none;
+        box-shadow: 0 5px lightgrey;
+    }
+    button:active{
+        transform: translateY(3px);
+        box-shadow: 0 2px lightgrey;
+    }
+    .pri{
+        display: flex;
+        justify-content: center;
+    }
+    .but{
+        font-size: 200%;
+        border-radius: 15%;
+    }
+</style>
 </html>
