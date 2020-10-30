@@ -9,20 +9,15 @@
 </head>
 <body>
 {% include 'header.twig' %}
-<form action="/create" method="post">
-    <input type="text" name="title" content="title">
-    <input type="textarea" name="content" content="content">
-    {% if name%}
-    <input type="hidden" name="username" value={{name}} content="username" >
-    {% else%}
-    <input type="text" name="username" content="username">
-    {% endif %}
-    <button type="submit">Valider</button>
+<form action="/login" method="post">
+    <input type="email"  placeholder="email" required="" name="email"/>
+    <input type="password"  placeholder="password" required="" name="password"/>
+    <button type="submit" onclick="">valider</button>
 </form>
 {% include 'footer.twig' %}
 </body>
 <style>
-    body {
+    body{
         border: solid;
     }
     button{
@@ -35,3 +30,4 @@
     }
 </style>
 </html>
+

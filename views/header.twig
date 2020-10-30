@@ -1,0 +1,33 @@
+<header class="head">
+    <a href="/"><h1 style="color: white">Pastebin-Like</h1></a>
+    <div>{%if name%}</div>
+    <a style="color: white" href="./my-pastes">
+    {{name}}
+    </a>
+    <a href="/logout"><button>logout</button></a>
+    {% else %}
+    <a href="./signup"><button>Sign-up</button></a>
+    <a href="./login"><button>Login</button></a>
+    {% endif %}
+</header>
+<style>
+    .head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: solid;
+        background-color: black;
+        padding-left: 1%;
+        padding-right: 1%;
+        margin-bottom: 2%;
+    }
+    a{
+        text-decoration: none;
+    }
+    a:active{
+        text-decoration: none;
+    }
+    a:hover{
+        text-decoration: none;
+    }
+</style>

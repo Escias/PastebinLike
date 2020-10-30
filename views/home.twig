@@ -8,37 +8,31 @@
     <title>Document</title>
 </head>
 <body>
-    <header class="head">
-        <h1 style="color: white">Pastebin Like</h1>
-        <div class="log">
-            <a href="./signup"><button>Sign-up</button></a>
-            <a href="./login"><button>Login</button></a>
-        </div>
-    </header>
+{% include 'header.twig' %}
     <div class="pri">
-        <a href="./create"><button>Create a paste</button></a>
+        <a href="./create"><button class="but">Create a paste</button></a>
     </div>
-    <footer>
-        <p>Anis / Jimmy / Alexandre / "Arthur"</p>
-    </footer>
+{% include 'footer.twig' %}
 </body>
 <style>
-    .head{
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        background-color: black;
-        border-bottom: solid;
-        padding-left: 1%;
-        padding-right: 1%;
+    body {
+        border: solid;
     }
-    .log{
-        display: flex;
-        align-items: center;
+    button{
+        outline: none;
+        box-shadow: 0 5px lightgrey;
+    }
+    button:active{
+        transform: translateY(3px);
+        box-shadow: 0 2px lightgrey;
     }
     .pri{
-        margin-top: 2%;
-        margin-bottom: 2%;
+        display: flex;
+        justify-content: center;
+    }
+    .but{
+        font-size: 200%;
+        border-radius: 15%;
     }
 </style>
 </html>
