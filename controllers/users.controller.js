@@ -11,18 +11,21 @@ module.exports = function createUserController(db) {
             if (alreadyEmail || alreadyPseudo) {
                 return { error: 'User already exists' }
             }
-
+            const hash = crypto.createHash('sha256')
+            hash.update(password);
             // ne pas stocker les mot de passe en clair !
             await users.insertOne({
-                email: email, pseudo: pseudo, password: password
+                email: email, pseudo: pseudo, password: hash.digest('hex')
             })
 
             return { success: true }
         },
 
         async login({ email, password }) {
+            const hash = crypto.createHash('sha256')
+            hash.update(password);
             const user = await users.findOne({email: email})
-            if (!(user && user.password === password)) {
+            if (!(user && user.password === await hash.digest('hex'))) {
                 return {error: 'Bad credentials'}
             }
             user.authToken = crypto.randomBytes(20).toString('hex')

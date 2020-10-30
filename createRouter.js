@@ -40,13 +40,15 @@ async function createRouter(db) {
 
     router.post('/signup', async function(req, res) {
         const signupResult = await UserController.signup(req.body)
-        return res.json(signupResult)
+        res.redirect('/')
+        // return res.json(signupResult)
     })
 
     router.post('/login', async function(req, res){
         const loginResult = await UserController.login(req.body)
         res.cookie('authToken',loginResult.authToken, { maxAge: 900000, httpOnly: true });
-        return res.json(loginResult)
+        res.redirect('/')
+        // return res.json(loginResult)
     });
 
     router.get('/login',(req,res)=>{
@@ -59,7 +61,8 @@ async function createRouter(db) {
     })
     router.post('/create',await isAuth,async function(req,res){
         const pastebin = await PastebinController.createcontent(req.body)
-        return res.json(pastebin)
+        res.redirect('/')
+        // return res.json(pastebin)
     })
 
     router.get('/my-pastes', await isAuth, async function (req, res) {
