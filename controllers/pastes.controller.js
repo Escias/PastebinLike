@@ -6,15 +6,18 @@ module.exports = function createUserController(db) {
     return {
         async createcontent({ title, content, username}) {
             var url = slug(title);
+            var date = new Date(Math.round(new Date().getTime() / 1000))
             await pastes.insertOne({
-                title: title, content: content, username: username, url:url
+                title: title, content: content, username: username, url:url,date:date
             })
             return { success: true }
         },
 
         // retourne un array contenant les information du paste
-        async getpaste({url}){
+        async getpaste(url){
             const paste = await pastes.findOne({url: url})
+            console.log('paste')
+            console.log(paste)
             return {success:true, paste}
         },
 

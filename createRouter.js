@@ -79,7 +79,6 @@ async function createRouter(db) {
 
     router.get('/past/:slug', await isAuth,async function (req, res){
         const pastebin = await PastebinController.getpaste(req.params.slug);
-        console.log(pastebin.cont);
         res.render('pastebin.twig', {
             pastebin: pastebin.paste,
             name:req.username
