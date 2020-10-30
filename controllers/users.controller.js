@@ -25,7 +25,6 @@ module.exports = function createUserController(db) {
             if (!(user && user.password === password)) {
                 return {error: 'Bad credentials'}
             }
-
             user.authToken = crypto.randomBytes(20).toString('hex')
             users.save(user)
 

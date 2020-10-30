@@ -1,0 +1,9 @@
+<div>
+    <div>{%if name%}</div>
+    {{name}}
+    <a href="/logout">logout</a>
+    {% else %}
+    <a href="./signup"><button>Sign-up</button></a>
+    <a href="./login"><button>Login</button></a>
+    {% endif %}
+</div>

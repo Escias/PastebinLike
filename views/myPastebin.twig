@@ -8,15 +8,9 @@
     <title>Document</title>
 </head>
 <body>
-{% include 'header.twig' %}
-    <header>
-        <h1>Pastebin Like</h1>
-    </header>
-    <div>
-        <a href="./create"><button>Create a paste</button></a>
-    </div>
-    <footer>
-        <p>Anis / Jimmy / Alexandre / "Arthur"</p>
-    </footer>
+{% for pastebin in pastebins%}
+<a href="/past/{{pastebin.url}}">{{pastebin.title}}  </a>
+<br/>
+{% endfor %}
 </body>
 </html>
